@@ -1,0 +1,15 @@
+{
+  "name": "algorithm-study",
+  "version": "1.0.0",
+  "description": "알고리즘 깃허브 레포지터리에 대한 활용 방법은 다음과 같습니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "priorityqueuejs": "^2.0.0"
+  }
+}
