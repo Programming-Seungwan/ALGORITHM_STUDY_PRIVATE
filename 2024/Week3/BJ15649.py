@@ -12,7 +12,7 @@ check = [False] * (N + 1)
 # 재귀함수의 인자가 목표로 하는 수열의 길이와 같으면 출력하고 함수를 종료시킨다
 def recur(num):
   if num == M:
-    print(''.join(map(str, res)))
+    print(' '.join(map(str, res)))
     return
   # for 문을 돌리기
   for i in range(1, N + 1):
