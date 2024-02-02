@@ -14,8 +14,7 @@ def isLineEmpty(listNum):
 
 # 본 함수의 발동 조건 : 1인 길이 있을 때 발동
 def recur(originNodeIndex, newVisitedIndex):
-  # print(newVisitedIndex)
-  visited.append(newVisitedIndex)
+  visited.append(newVisitedIndex) # 밖에서 일단 1이면바로 때려박기 때문에 추후에 중복 제거와 같은 작업을 해주긴 해야됨
   if originNodeIndex == newVisitedIndex:
     return
 
