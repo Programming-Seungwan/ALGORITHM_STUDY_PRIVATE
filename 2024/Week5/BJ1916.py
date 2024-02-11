@@ -13,6 +13,8 @@ for i in range(1, cityNum + 1):
   for j in range(1, cityNum + 1):
     if i != j:
       twoDimensionDic[i][j] = float('inf')
+    if i == j:
+      twoDimensionDic[i][j] = 0
 for i in range(busNum):
   sCity, eCity, cost = busList[i]
   twoDimensionDic[sCity][eCity] = cost
@@ -47,7 +49,4 @@ while not ifAllCityVisited():
         twoDimensionDic[startCity][key] = twoDimensionDic[startCity][unvisitedLowestCity] + twoDimensionDic[unvisitedLowestCity][key]
 # print(visited)
 # print(twoDimensionDic)
-if startCity == endCity:
-  print(0)
-else:
-  print(twoDimensionDic[startCity][endCity])
+print(twoDimensionDic[startCity][endCity])
