@@ -1,16 +1,17 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-const num = Number(fs.readFileSync(filePath).toString().trim())
-const numArray = String(num).split('').map((element) => Number(element))
-const hasZero = numArray.some((number) => number === 0)
+const num = fs.readFileSync(filePath).toString().trim()
+const numArray = num.split('').map((element) => BigInt(element))
+
+const hasZero = numArray.some((number) => number === 0n)
 
 if (!hasZero) {
   console.log(-1)
 } else {
-  const totalSum = numArray.reduce((acc, income) => acc + income, 0)
-  if (totalSum % 3 !== 0) {
+  const totalSum = numArray.reduce((acc, income) => acc + income, 0n)
+  if (totalSum % 3n !== 0n) {
     console.log(-1)
   } else {
-    console.log(Number(numArray.sort((a, b) => b - a).join('')))
+    console.log(numArray.sort((a, b) => Number(b) - Number(a)).join(''))
   }
 }
