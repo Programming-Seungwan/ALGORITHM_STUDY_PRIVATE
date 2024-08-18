@@ -18,11 +18,11 @@ for (let i = 2; i <= number; i++) {
   memoObject[i] = [];
   for (const prevMemoNumber of memoObject[i - 1]) {
     if (isPinaryNumber(prevMemoNumber, 0)) {
-      memoObject[i].push(String(prevMemoNumber).concat('0'))
+      memoObject[i].push(Number(String(prevMemoNumber).concat('0')))
     }
 
     if (isPinaryNumber(prevMemoNumber, 1)) {
-      memoObject[i].push(String(prevMemoNumber).concat('1'))
+      memoObject[i].push(Number(String(prevMemoNumber).concat('1')))
     }
   }
 }
