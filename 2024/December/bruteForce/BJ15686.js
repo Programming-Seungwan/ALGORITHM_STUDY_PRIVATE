@@ -7,6 +7,7 @@ const realArr = arr.map((element) =>
   element.split(' ').map((el) => Number(el))
 );
 
+// 두 포인트 사이의 절댓값 거리를 구하는 로직 : 맨해튼 거리 로직
 function getDistance(housePoint, chickenPoint) {
   return (
     Math.abs(housePoint[0] - chickenPoint[0]) +
@@ -14,6 +15,7 @@ function getDistance(housePoint, chickenPoint) {
   );
 }
 
+// 조합에 맞게 뽑혀진 새로운 치킨집 배열과 집 배열의 도시 치킨 거리를 구하는 함수
 function getMinChickenDistance(houseArr, newChickenArr) {
   let minDistance = 0;
   for (const housePtr of houseArr) {
@@ -27,10 +29,13 @@ function getMinChickenDistance(houseArr, newChickenArr) {
   return minDistance;
 }
 
+// 배열의 요소를 가지고 selectNumber 개수 만큼의 조합을 구하는 함수
 function getCombinations(arr, selectNumber) {
   const results = [];
+  // 종료 조건을 말해줌
   if (selectNumber === 1) return arr.map((el) => [el]);
 
+  // origin은 메서드를 호출한 배열 그 자체를 의미한다
   arr.forEach((fixed, index, origin) => {
     const rest = origin.slice(index + 1); // 고정된 값 이후의 요소들
     const combinations = getCombinations(rest, selectNumber - 1); // 재귀적으로 조합 생성
