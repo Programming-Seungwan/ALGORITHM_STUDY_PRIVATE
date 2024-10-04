@@ -8,6 +8,7 @@ const [firstLine, ...arr] = fs.readFileSync(filePath).toString().split('\n');
 const [M, N] = firstLine.split(' ').map((el) => parseInt(el));
 const dx = [1, 0, -1, 0];
 const dy = [0, 1, 0, -1];
+
 let refinedArr = arr.map((element) =>
   element.split(' ').map((el) => parseInt(el))
 );
@@ -52,26 +53,43 @@ function getRipenTomatoCount(arr) {
   return resultCount;
 }
 
-function dfs(graph, startNode, visited = new Set()) {
-  if (!graph[startNode]) return
-
-  visited.add(startNode)
-
-  for (const neighbor of graph[startNode]) {
-    if (!visited.has(neighbor)) {
-      dfs(graph, neighbor, visited)
-    }
-  }
-}
-
 // 해당 거기 안에서 다음 날의 rotten 배열을 만들어주고, 상태가 같지 않으면 daycount를 늘려주고 같으면 끝내버리기
+// 해당 배열을 어떻게 그래프로 나타낼 것인가?
 while (true) {
+  const visited = Array.from({ length: N }, () => Array(M).fill(false));
   const newRefinedArr = JSON.parse(JSON.stringify(refinedArr));
-  const visited = Array.from({length: N}, Array(M).fill(false));
 
   for (let i = 0; i < N; i++) {
     for (let j = 0; j < M; j++) {
-      if (refinedArr[i][j] === 1)
+      if (refinedArr[i][j] === 1) {
+        for (let k = 0; k < 4; k++) {
+          const nextX = i + dx[k];
+          const nextY = j + dy[k];
+          if (
+            nextX >= 0 &&
+            nextX < N &&
+            nextY >= 0 &&
+            nextY < M &&
+            refinedArr[nextX][nextY] === 0 &&
+            !visited[nextX][nextY]
+          ) {
+            newRefinedArr[nextX][nextY] = 1;
+            visited[nextX][nextY] = true;
+          }
+        }
+      }
     }
   }
+
+  if (
+    getRipenTomatoCount(newRefinedArr) === totalTomatoCount &&
+    isTwoArrayCompletelyEqual(refinedArr, newRefinedArr)
+  ) {
+    break;
+  } else {
+    refinedArr = newRefinedArr;
+    dayCount += 1;
+  }
 }
+
+console.log(dayCount);
