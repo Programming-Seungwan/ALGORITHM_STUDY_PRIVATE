@@ -38,11 +38,18 @@ def process(fileName):
       print('DA')
     return
 
+  # 별표가 중간에 있는 경우
   firstFindingString = pattern[0 : asteriskIndex]
   secondFindingString = pattern[asteriskIndex + 1 : ]
 
   firstFindingIndex = fileName.find(firstFindingString)
   secondFindingIndex = fileName.find(secondFindingString)
+
+  firstFindingEndingIndex = firstFindingIndex + len(firstFindingString) - 1
+
+  if (firstFindingEndingIndex >= secondFindingIndex):
+    print('NE')
+    return
 
   if (firstFindingIndex != -1 and secondFindingIndex != -1 and firstFindingIndex < secondFindingIndex):
     print('DA')

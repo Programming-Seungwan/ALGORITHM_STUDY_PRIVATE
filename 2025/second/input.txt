@@ -1,5 +1,3 @@
-4
-a*d
-abcd
-anestonestod
-facebook
+1
+ab*bbb
+abbb
