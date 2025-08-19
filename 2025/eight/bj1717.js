@@ -30,7 +30,7 @@ rl.on('line', (line) => {
 
       if (rootX === rootY) return false; // Already in the same set
 
-      // Union by rank
+      // Union by rank : 대표자 노드의 크기로 비교하는 것이 아니라 각 그룹의 트리 rank로 비교
       if (this.rank[rootX] < this.rank[rootY]) {
         this.parent[rootX] = rootY;
       } else if (this.rank[rootX] > this.rank[rootY]) {
