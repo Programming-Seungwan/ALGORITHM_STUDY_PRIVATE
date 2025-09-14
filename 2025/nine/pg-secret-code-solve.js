@@ -11,7 +11,7 @@ function generateCombinations(n, m) {
       arr.push(i);
       addCombination(i, cnt + 1, arr);
       arr.pop();
-    }
+    } // 특정 요소를 밀어넣고, 다시 빼는 것이 backtracking 알고리즘의 핵심
   }
 
   addCombination(0, 0, []);
@@ -28,10 +28,11 @@ function solution(n, q, ans) {
     combinations = combinations.filter((comb) => {
       let match = 0;
       for (const num of comb) {
+        // 구한 조합의 특정 요소가 테스트케이스마다 산출된 결과와 매번 일치하면 해당 조합은 남겨둔다.
         if (querySet.has(num)) match++;
       }
 
-      return ans[i] === match;
+      return ans[i] === match; // 점검이 끝난 뒤 조건을 검사하여 해당 comb를 남길지 검사
     });
   }
 
